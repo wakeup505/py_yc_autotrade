@@ -32,14 +32,14 @@ def get_balance(ticker):
 
 
 # 전체 코인 가져오기
-# tickers = pyupbit.get_tickers("KRW")
-tickers = ["KRW-" for i in range(len(ticker_list_manual))]
+# upbit_tickers = pyupbit.get_tickers("KRW")
+upbit_tickers = ["KRW-" for i in range(len(ticker_list_manual))]
 for i in range(len(ticker_list_manual)):
-    tickers[i] += ticker_list_manual[i]
-    # print(tickers[i])
+    upbit_tickers[i] += ticker_list_manual[i]
+    # print(upbit_tickers[i])
 
 # 전체 코인 개수 가져오기
-total_num_coin = len(tickers)
+total_num_coin = len(upbit_tickers)
 # total_num_coin = 110
 print(total_num_coin)
 
@@ -47,8 +47,8 @@ print(total_num_coin)
 for i in range(total_num_coin):
     current_price = get_current_price(i) * get_balance(ticker_list_manual[i])
     if current_price < BAL_COIN:
-        upbit.buy_market_order(tickers[i], BAL_COIN - current_price)
-        print(tickers[i] + " Buy: " + "{:>7,.0f}".format(BAL_COIN - current_price))
+        upbit.buy_market_order(upbit_tickers[i], BAL_COIN - current_price)
+        print(upbit_tickers[i] + " Buy: " + "{:>7,.0f}".format(BAL_COIN - current_price))
 
     time.sleep(0.1)
       
